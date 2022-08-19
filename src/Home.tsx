@@ -575,7 +575,7 @@ const Home = (props: HomeProps) => {
                               display="block"
                               style={{ fontWeight: 'bold' }}
                             >
-                              UNTIL PUBLIC MINT
+                              UNTIL WHITELIST MINT
                             </Typography>
                           )}
                       </>
@@ -696,7 +696,7 @@ const Home = (props: HomeProps) => {
             display="block"
             style={{ marginTop: 7, color: 'grey' }}
           >
-            Powered by METAPLEX
+            Brought by Heroes of Olympus
           </Typography>
         </Paper>
       </Container>
