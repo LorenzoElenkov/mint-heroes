@@ -71,6 +71,9 @@ const Home = (props: HomeProps) => {
   const [needTxnSplit, setNeedTxnSplit] = useState(true);
   const [setupTxn, setSetupTxn] = useState<SetupState>();
 
+  const [hasEnoughFunds, setHasEnoughFunds] = useState(false);
+  const [isWhitelistedUser, hasIsWhitelistedUser] = useState(false);
+
   const rpcUrl = props.rpcHost;
   const wallet = useWallet();
   const cluster = props.network;
@@ -149,7 +152,6 @@ const Home = (props: HomeProps) => {
               isWLUser = parseInt(balance.value.amount) > 0;
               // only whitelist the user if the balance > 0
               setIsWhitelistUser(isWLUser);
-
               if (cndy.state.isWhitelistOnly) {
                 active = isWLUser && (presale || active);
               }
@@ -193,6 +195,7 @@ const Home = (props: HomeProps) => {
               await connection.getBalance(anchorWallet.publicKey),
             );
             const valid = balance.gte(userPrice);
+            setHasEnoughFunds(valid);
             setIsValidBalance(valid);
             active = active && valid;
           }
@@ -673,6 +676,8 @@ const Home = (props: HomeProps) => {
                         isActive ||
                         (isPresale && isWhitelistUser && isValidBalance)
                       }
+                      hasFunds={hasEnoughFunds}
+                      isWhitelisted={isWhitelistUser}
                     />
                   </GatewayProvider>
                 ) : (
@@ -685,6 +690,8 @@ const Home = (props: HomeProps) => {
                       isActive ||
                       (isPresale && isWhitelistUser && isValidBalance)
                     }
+                    hasFunds={hasEnoughFunds}
+                    isWhitelisted={isWhitelistUser}
                   />
                 )}
               </MintContainer>

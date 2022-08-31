@@ -29,12 +29,16 @@ export const MintButton = ({
   isMinting,
   setIsMinting,
   isActive,
+  hasFunds,
+  isWhitelisted
 }: {
   onMint: () => Promise<void>;
   candyMachine?: CandyMachineAccount;
   isMinting: boolean;
   setIsMinting: (val: boolean) => void;
   isActive: boolean;
+  hasFunds: boolean;
+  isWhitelisted: boolean;
 }) => {
   const wallet = useWallet();
   const connection = useConnection();
@@ -48,13 +52,19 @@ export const MintButton = ({
       return 'SOLD OUT';
     } else if (isMinting) {
       return <CircularProgress />;
-    } else if (
-      candyMachine?.state.isPresale ||
-      candyMachine?.state.isWhitelistOnly
-    ) {
-      return 'WHITELIST MINT';
+    } else if (candyMachine?.state.isPresale || candyMachine?.state.isWhitelistOnly) {
+      if (isWhitelisted) {
+        if (!hasFunds) {
+          return 'NOT ENOUGH SOL';
+        }
+        return 'WHITELIST MINT';
+      } else {
+        return 'NO WHITELIST TOKEN';
+      }
     }
-
+    if (!hasFunds) {
+      return 'NOT ENOUGH SOL';
+    }
     return 'MINT';
   };
 
