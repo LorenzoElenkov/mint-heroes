@@ -62,7 +62,7 @@ const App = () => {
   );
 
   return (
-    <div className="backgroundDiv">
+    <div className='backgroundDiv'>
     <ThemeProvider theme={theme}>
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets} autoConnect>

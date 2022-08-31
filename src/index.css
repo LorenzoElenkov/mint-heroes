@@ -16,7 +16,5 @@ code {
 .backgroundDiv {
   background-image: url(./IMG_0531.PNG);
   background-size: cover;
-  /* background-repeat: no-repeat; */
-  /* background-position: 50% 0; */
   height: 100vh;
 }

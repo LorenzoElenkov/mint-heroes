@@ -52,9 +52,10 @@ export const MintButton = ({
       candyMachine?.state.isPresale ||
       candyMachine?.state.isWhitelistOnly
     ) {
-      return `WHITELIST MINT`;
+      return 'WHITELIST MINT';
     }
-    return 'PUBLIC MINT';
+
+    return 'MINT';
   };
 
   useEffect(() => {

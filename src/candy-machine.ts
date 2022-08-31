@@ -446,7 +446,6 @@ export const mintOneToken = async (
     );
 
     const whitelistToken = (await getAtaForMint(mint, payer))[0];
-    console.log(whitelistToken);
     remainingAccounts.push({
       pubkey: whitelistToken,
       isWritable: true,
