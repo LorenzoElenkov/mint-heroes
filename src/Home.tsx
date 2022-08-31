@@ -143,13 +143,11 @@ const Home = (props: HomeProps) => {
             const token = (
               await getAtaForMint(mint, anchorWallet.publicKey)
             )[0];
-
             try {
               const balance = await connection.getTokenAccountBalance(token);
               isWLUser = parseInt(balance.value.amount) > 0;
               // only whitelist the user if the balance > 0
               setIsWhitelistUser(isWLUser);
-
               if (cndy.state.isWhitelistOnly) {
                 active = isWLUser && (presale || active);
               }
@@ -166,7 +164,6 @@ const Home = (props: HomeProps) => {
             }
           }
           userPrice = isWLUser ? userPrice : cndy.state.price;
-
           if (cndy?.state.tokenMint) {
             // retrieves the SPL token
             const mint = new anchor.web3.PublicKey(cndy.state.tokenMint);
@@ -177,7 +174,6 @@ const Home = (props: HomeProps) => {
               const balance = await connection.getTokenAccountBalance(token);
 
               const valid = new anchor.BN(balance.value.amount).gte(userPrice);
-
               // only allow user to mint if token balance >  the user if the balance > 0
               setIsValidBalance(valid);
               active = active && valid;
@@ -477,13 +473,13 @@ const Home = (props: HomeProps) => {
   }, [refreshCandyMachineState]);
 
   return (
-    <Container style={{ marginTop: 100 }}>
-      <Container maxWidth="xs" style={{ position: 'relative' }}>
+    <Container style={{ marginTop: 0 }}>
+      <Container maxWidth="xs" style={{ position: 'relative', paddingTop: '30vh' }}>
         <Paper
           style={{
             padding: 24,
             paddingBottom: 10,
-            backgroundColor: '#151A1F',
+            backgroundColor: 'rgba(0,0,0,0.75)',
             borderRadius: 8,
           }}
         >
