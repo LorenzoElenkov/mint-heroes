@@ -62,6 +62,7 @@ const App = () => {
   );
 
   return (
+    <div className='bgDiv'>
     <div className='backgroundDiv'>
     <ThemeProvider theme={theme}>
       <ConnectionProvider endpoint={endpoint}>
@@ -78,6 +79,7 @@ const App = () => {
         </WalletProvider>
       </ConnectionProvider>
     </ThemeProvider>
+    </div>
     </div>
   );
 };

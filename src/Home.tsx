@@ -31,6 +31,7 @@ import { MintButton } from './MintButton';
 import { GatewayProvider } from '@civic/solana-gateway-react';
 import { sendTransaction } from './connection';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import { red } from '@material-ui/core/colors';
 
 const ConnectButton = styled(WalletDialogButton)`
   width: 100%;
@@ -479,6 +480,18 @@ const Home = (props: HomeProps) => {
     })();
   }, [refreshCandyMachineState]);
 
+  const [containerFlex, setContainerFlex] = useState<any>('row');
+  useEffect(() => {
+    if (window.outerWidth > 429) {
+      setContainerFlex('row');
+    } else {
+      setContainerFlex('column');
+    }
+  },[]);
+
+  useEffect(() => {
+    console.log(containerFlex);
+  },[containerFlex])
   return (
     <Container style={{ marginTop: 0 }}>
       <Container maxWidth="xs" style={{ position: 'relative', paddingTop: '30vh' }}>
@@ -497,11 +510,11 @@ const Home = (props: HomeProps) => {
               {candyMachine && (
                 <Grid
                   container
-                  direction="row"
+                  direction={containerFlex}
                   justifyContent="center"
-                  wrap="nowrap"
+                  wrap="wrap"
                 >
-                  <Grid item xs={3}>
+                  <Grid item style={{ backgroundColor: 'red'}}>
                     <Typography variant="body2" color="textSecondary">
                       Remaining
                     </Typography>
@@ -512,7 +525,7 @@ const Home = (props: HomeProps) => {
                         fontWeight: 'bold',
                       }}
                     >
-                      {`${itemsRemaining}`}
+                      {`${itemsRemaining ? itemsRemaining - 500 : itemsRemaining}`}
                     </Typography>
                   </Grid>
                   <Grid item xs={4}>
