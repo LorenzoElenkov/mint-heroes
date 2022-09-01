@@ -514,7 +514,7 @@ const Home = (props: HomeProps) => {
                   justifyContent="center"
                   wrap="wrap"
                 >
-                  <Grid item style={{ backgroundColor: 'red'}}>
+                  <Grid item>
                     <Typography variant="body2" color="textSecondary">
                       Remaining
                     </Typography>
