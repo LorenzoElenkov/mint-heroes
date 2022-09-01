@@ -525,7 +525,7 @@ const Home = (props: HomeProps) => {
                         fontWeight: 'bold',
                       }}
                     >
-                      {`${itemsRemaining ? itemsRemaining - 500 : itemsRemaining}`}
+                      {`${itemsRemaining ? itemsRemaining - 800 : itemsRemaining}`}
                     </Typography>
                   </Grid>
                   <Grid item xs={4}>
